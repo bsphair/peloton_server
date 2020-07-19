@@ -9,6 +9,19 @@ import (
 	"net/http"
 )
 
+/*
+APIs
+
+1. Get workout history
+https://api.pelotoncycle.com/api/user/{userID}/workouts?joins=peloton.ride&limit={limit || 1}&page=0&sort_by=-created
+
+2. Get workout
+https://api.pelotoncycle.com/api/workout/{workoutID}?joins=peloton,peloton.ride,peloton.ride.instructor,user
+
+3. Get workout sample
+https://api.pelotoncycle.com/api/workout/{workoutID}/sample?every_n=10&fields=seconds_since_pedaling_start,power,cadence,speed,heart_rate,distance&limit=14400
+*/
+
 func login(w http.ResponseWriter, r *http.Request) {
 
 	// Read the request body to get the username and password
