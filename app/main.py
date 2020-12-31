@@ -1,22 +1,17 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
-
-# from routers import authorization
-
-class Auth(BaseModel):
-    username: str
-    password: str
-
+from app.api import router as endpoint_router
 
 app = FastAPI()
+app.include_router(endpoint_router)
 
-# app.include_router(authorization.router)
 
 @app.get("/")
 async def root():
+    # data = requests.get('https://jsonplaceholder.typicode.com/todos/1')
+    # print(data.json())
     return {"message": "Hello, World"}
 
+
 @app.post("/auth")
-async def auth(data: Auth):
-    print(data)
+async def auth(data):
     return {"message": "Successful Login"}

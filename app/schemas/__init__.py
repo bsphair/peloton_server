@@ -1,1 +1,1 @@
-from .authorization import Credentials, Token
+from app.schemas.authorization import Credentials
