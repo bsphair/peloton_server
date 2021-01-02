@@ -1,6 +1,17 @@
 version: '3.7'
 
-services: 
+services:
+  database:
+    image: postgres
+    container_name: pg-docker
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=peloton_db
+    ports:
+    - "5432:5432"
+    restart: always
+
   backend:
       container_name: peloton-backend
       build: 
@@ -11,3 +22,16 @@ services:
       - "3001:3001"
       volumes: 
         - ./app:/app/app:cached
+      depends_on:
+        - database
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+    - "5050:80"
+    depends_on:
+      - database

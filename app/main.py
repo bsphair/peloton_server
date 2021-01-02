@@ -7,8 +7,6 @@ app.include_router(endpoint_router)
 
 @app.get("/")
 async def root():
-    # data = requests.get('https://jsonplaceholder.typicode.com/todos/1')
-    # print(data.json())
     return {"message": "Hello, World"}
 
 
