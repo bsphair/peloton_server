@@ -1,8 +1,19 @@
 version: '3.7'
 
 services: 
+  db:
+      container_name: peloton_db
+      image: postgres:alpine
+      ports:
+          - "5432:5432"
+      restart: unless-stopped
+      env_file:
+          - dbcredentials.env
+      volumes:
+        - ./data/volumes/workout_dashboard/peloton_db:/var/lib/postgresql/data
+
   backend:
-      container_name: peloton-backend
+      container_name: peloton-server
       build: 
         context: .
         dockerfile: Dockerfile
