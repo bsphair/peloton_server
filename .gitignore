@@ -7,3 +7,5 @@ __pycache__
 env
 docs_build
 venv
+/data
+dbcredentials.env
