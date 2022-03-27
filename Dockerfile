@@ -1,6 +1,6 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
 
-ENV POETRY_VERSION=1.0.0
+ENV POETRY_VERSION=1.1.13
 
 RUN pip install "poetry==$POETRY_VERSION"
 WORKDIR /app
