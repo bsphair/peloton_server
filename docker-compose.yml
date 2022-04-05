@@ -1,24 +1,14 @@
-version: '3.7'
+version: '3.8'
 
-services: 
-  db:
-      container_name: peloton_db
-      image: postgres:alpine
-      ports:
-          - "5432:5432"
-      restart: unless-stopped
-      env_file:
-          - dbcredentials.env
-      volumes:
-        - ./data/volumes/workout_dashboard/peloton_db:/var/lib/postgresql/data
-
-  backend:
-      container_name: peloton-server
-      build: 
-        context: .
-        dockerfile: Dockerfile
-      command: poetry run uvicorn app.main:app --host 0.0.0.0 --port 3001 --reload
-      ports:
-      - "3001:3001"
-      volumes: 
-        - ./app:/app/app:cached
+services:
+    peloton_db:
+        container_name: peloton_db
+        hostname: peloton_db
+        image: postgres:alpine
+        ports:
+            - "54321:5432"
+        restart: unless-stopped
+        env_file:
+            - dbcredentials.env
+        volumes:
+          - ./pgdata:/var/lib/postgresql/data
