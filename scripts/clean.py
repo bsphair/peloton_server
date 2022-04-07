@@ -1,7 +1,6 @@
 import pandas as pd
 
-
-df = pd.read_csv('data.csv')
+df = pd.read_csv('../data/data.csv')
 
 df.drop(columns=['Avg. Incline', 'Avg. Pace (min/mi)'], inplace=True)
 
@@ -33,13 +32,12 @@ df["class_timestamp"] = pd.to_datetime(df["class_timestamp"].str[:16])
 # Remove the % symbol from the average resistance column
 df['average_resistance'] = df['average_resistance'].str.rstrip('%')
 
-
-# df = df.fillna(0)
 filled_df = df.fillna({ 
     "live_on_demand": "",  
     "instructor_name": "",
     "type": "",
-    "class_timestamp": NULL,
+    "length": 0,
+    "class_timestamp": "",
     "total_output": 0,
     "average_watts": 0,
     "average_resistance": 0,
@@ -50,7 +48,6 @@ filled_df = df.fillna({
     "average_heartrate": 0
 })
 
-print(filled_df)
 
-filled_df.to_csv('test_data.csv', index=False)
+filled_df.to_csv('../data/clean_data.csv', index=False)
 
